@@ -1,0 +1,6 @@
+cd /app
+rm -rf file-sharing
+git clone https://github.com/Rajbhaiya/file-sharing/
+cd file-sharing
+pip install --quiet -r requirements.txt
+python main.py
