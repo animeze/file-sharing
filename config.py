@@ -6,6 +6,9 @@
 import os
 import logging
 from logging.handlers import RotatingFileHandler
+from dotenv import load_dotenv
+
+load_dotenv(".env")
 
 
 
