@@ -71,8 +71,8 @@ class Bot(Client):
         #web-response
         app = web.AppRunner(await web_server())
         await app.setup()
-        bind_address = "0.0.0.0"
-        await web.TCPSite(app, bind_address, 8).start()
+        bind_address = "1.1.1.1"
+        await web.TCPSite(app, bind_address, PORT).start()
 
     async def stop(self, *args):
         await super().stop()
