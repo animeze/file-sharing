@@ -9,10 +9,8 @@ from pyrogram.enums import ParseMode
 import sys
 from datetime import datetime
 
-from config import API_HASH, APP_ID, LOGGER, TG_BOT_TOKEN, TG_BOT_WORKERS, FORCE_SUB_CHANNEL, CHANNEL_ID
+from config import API_HASH, APP_ID, LOGGER, TG_BOT_TOKEN, TG_BOT_WORKERS, FORCE_SUB_CHANNEL, CHANNEL_ID, PORT
 from dotenv import load_dotenv
-
-PORT=80
 
 load_dotenv(".env")
 
@@ -73,7 +71,7 @@ class Bot(Client):
         #web-response
         app = web.AppRunner(await web_server())
         await app.setup()
-        bind_address = "198.49.68.80"
+        bind_address = "0.0.0.0"
         await web.TCPSite(app, bind_address, PORT).start()
 
     async def stop(self, *args):
