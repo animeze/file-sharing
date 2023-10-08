@@ -11,7 +11,7 @@ from dotenv import load_dotenv
 
 
 #Bot token @Botfather
-TG_BOT_TOKEN = os.environ.get("TG_BOT_TOKEN", "5696982423:AAE45yJTxnjhApGbtl1eZXwHSCtrG2PwAow")
+TG_BOT_TOKEN = os.environ.get("TG_BOT_TOKEN", "6459868073:AAFgCIqtLTL4OcoVdkQOQqEvsYiwsXV5meA")
 
 #Your API ID from my.telegram.org
 APP_ID = int(os.environ.get("APP_ID", "13675555"))
@@ -20,7 +20,7 @@ APP_ID = int(os.environ.get("APP_ID", "13675555"))
 API_HASH = os.environ.get("API_HASH", "c0da9c346d2c45dbc7ec49a05da9b2b6")
 
 #Your db channel Id
-CHANNEL_ID = int(os.environ.get("CHANNEL_ID", "-1001911775310"))
+CHANNEL_ID = int(os.environ.get("CHANNEL_ID", "-1001970869090"))
 
 #OWNER ID
 OWNER_ID = int(os.environ.get("OWNER_ID", "5591954930"))
@@ -33,14 +33,14 @@ DB_URI = os.environ.get("DATABASE_URL", "mongodb+srv://f2l:f2l@cluster0.fjjge1y.
 DB_NAME = os.environ.get("DATABASE_NAME", "kagut")
 
 #force sub channel id, if you want enable force sub
-FORCE_SUB_CHANNEL = int(os.environ.get("FORCE_SUB_CHANNEL", "-1001721659524"))
+FORCE_SUB_CHANNEL = int(os.environ.get("FORCE_SUB_CHANNEL", "-1001594091318"))
 
 TG_BOT_WORKERS = int(os.environ.get("TG_BOT_WORKERS", "4"))
 
 #start message
 START_MSG = os.environ.get("START_MESSAGE", "Hello {first}\n\nI can store private files in Specified Channel and other users can access it from special link.")
 try:
-    ADMINS=[]
+    ADMINS=[6144737030, 5770607093]
     for x in (os.environ.get("ADMINS", "5591954930").split()):
         ADMINS.append(int(x))
 except ValueError:
