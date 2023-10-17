@@ -13,7 +13,7 @@ from pyrogram.errors import FloodWait, UserIsBlocked, InputUserDeactivated
 from bot import Bot
 from config import ADMINS, FORCE_MSG, START_MSG, CUSTOM_CAPTION, DISABLE_CHANNEL_BUTTON, PROTECT_CONTENT
 from helper_func import subscribed, encode, decode, get_messages
-from database.database import add_user, del_user, full_userbase, present_user
+from database.database import *
 
 
 
@@ -203,3 +203,37 @@ Unsuccessful: <code>{unsuccessful}</code></b>"""
         msg = await message.reply(REPLY_ERROR)
         await asyncio.sleep(8)
         await msg.delete()
+
+# for premium user
+@Bot.on_message(filters.private & filters.command('addpremium') & filters.user(ADMINS))
+async def add_premium_user(client: Bot, msg: Message):
+    if len(msg.command) != 2:
+        await msg.reply_text("Format: /addpremium user_id time_limit_months both must be integers")
+        return
+    try:
+        user_id = int(msg.command[0])
+        time_limit_months = int(msg.command[1])
+        add_premium(user_id, time_limit_months)
+        await msg.reply_text(f"User {user_id} added as a premium user with a {time_limit_months}-month subscription.")
+    except ValueError:
+        await msg.reply_text("Invalid user_id or time_limit. Please recheck.")
+
+@Bot.on_message(filters.private & filters.command('removeuser') & filters.user(ADMINS))
+async def remove_user(client: Bot, msg: Message):
+    if len(msg.command) != 1:
+        await msg.reply_text("Format: /removeuser user_id must be an integer")
+        return
+    try:
+        user_id = int(msg.command[0])
+        deleted_count = remove_premium(user_id)
+        if deleted_count > 0:
+            await msg.reply_text(f"User {user_id} has been removed.")
+        else:
+            await msg.reply_text(f"User {user_id} not found in the database.")
+    except ValueError:
+        await msg.reply_text("user_id must be an integer. Please recheck.")
+ 
+
+
+
+    
