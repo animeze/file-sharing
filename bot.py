@@ -8,6 +8,7 @@ from pyrogram import Client
 from pyrogram.enums import ParseMode
 import sys
 from datetime import datetime
+from database.database import *
 
 from config import API_HASH, APP_ID, LOGGER, TG_BOT_TOKEN, TG_BOT_WORKERS, FORCE_SUB_CHANNEL, CHANNEL_ID, PORT
 from dotenv import load_dotenv
@@ -30,6 +31,7 @@ class Bot(Client):
 
     async def start(self):
         await super().start()
+        super().add_job(remove_expired_users, interval=3600)
         usr_bot_me = await self.get_me()
         self.uptime = datetime.now()
 
