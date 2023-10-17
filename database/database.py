@@ -62,3 +62,17 @@ def remove_expired_users():
         collection.delete_one({"user_id": user_id})
 
     dbclient.close()
+
+def list_premium_users():
+    premium_users = collection.find({})
+    
+    premium_user_list = []
+
+    for user in premium_users:
+        user_id = user["user_id"]
+        user_info = app.get_chat(user_id)
+        username = user_info.username if user_info.username else user_info.first_name
+        expiration_timestamp = user["expiration_timestamp"]
+        premium_user_list.append(f"{user_id} - {username} - Expiration Timestamp: {expiration_timestamp}")
+
+    return premium_user_list
