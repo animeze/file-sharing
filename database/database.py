@@ -2,7 +2,7 @@
 
 
 
-
+import time
 import pymongo, os
 from config import DB_URI, DB_NAME
 
@@ -12,6 +12,7 @@ database = dbclient[DB_NAME]
 
 
 user_data = database['users']
+collection = database['premium-users']
 
 
 
@@ -34,3 +35,30 @@ async def full_userbase():
 async def del_user(user_id: int):
     user_data.delete_one({'_id': user_id})
     return
+
+def add_premium(user_id, time_limit_months):
+    expiration_timestamp = int(time.time()) + time_limit_months * 30 * 24 * 60 * 60
+    user_data = {
+        "user_id": user_id,
+        "expiration_timestamp": expiration_timestamp,
+    }
+    collection.insert_one(user_data)
+    dbclient.close()
+
+def remove_premium(user_id):
+    result = collection.delete_one({"user_id": user_id})
+    deleted_count = result.deleted_count
+    dbclient.close()
+    return deleted_count
+
+def remove_expired_users():
+    current_timestamp = int(time.time())
+
+    # Find and delete expired users
+    expired_users = collection.find({"expiration_timestamp": {"$lte": current_timestamp}}
+    
+    for expired_user in expired_users:
+        user_id = expired_user["user_id"]
+        collection.delete_one({"user_id": user_id})
+
+    dbclient.close()
