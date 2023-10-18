@@ -34,9 +34,9 @@ async def batch(client: Client, message: Message):
 
 
     string = f"get-{f_msg_id * abs(client.db_channel.id)}-{s_msg_id * abs(client.db_channel.id)}"
-    base64_string1 = await encode(string)
+    base64_string = await encode(string)
     base64_string2 = await encode(string)
-    link = f"https://t.me/{client.username}?start={base64_string1}"
+    link = f"https://t.me/{client.username}?start={base64_string}"
     link1 = f"https://t.me/{client.username}?premium={base64_string2}"
     reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton("🔁 Share URL", url=f'https://telegram.me/share/url?url={link}')]])
     await second_message.reply_text(f"<b>> Here is your link: </b>{link}\n\n<b>> Premium user link:</b> {link1}", quote=True, reply_markup=reply_markup)
