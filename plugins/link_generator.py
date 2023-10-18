@@ -39,7 +39,7 @@ async def batch(client: Client, message: Message):
     link = f"https://t.me/{client.username}?start={base64_string1}"
     link1 = f"https://t.me/{client.username}?premium={base64_string2}"
     reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton("🔁 Share URL", url=f'https://telegram.me/share/url?url={link}')]])
-    await second_message.reply_text(f"<b>> Here is your link: </b>{link}\n\n<b>> Premium user link:</b> {link2}", quote=True, reply_markup=reply_markup)
+    await second_message.reply_text(f"<b>> Here is your link: </b>{link}\n\n<b>> Premium user link:</b> {link1}", quote=True, reply_markup=reply_markup)
 
 
 @Bot.on_message(filters.private & filters.user(ADMINS) & filters.command('genlink'))
