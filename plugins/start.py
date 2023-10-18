@@ -207,12 +207,12 @@ Unsuccessful: <code>{unsuccessful}</code></b>"""
 # for premium user
 @Bot.on_message(filters.private & filters.command('addpremium') & filters.user(ADMINS))
 async def add_premium_user(client: Client, msg: Message):
-    if len(msg.command) != 2:
+    if len(msg.command) != 3:
         await msg.reply_text("Format: /addpremium user_id time_limit_months both must be integers")
         return
     try:
-        user_id = int(msg.command[0])
-        time_limit_months = int(msg.command[1])
+        user_id = int(msg.command[1])
+        time_limit_months = int(msg.command[2])
         add_premium(user_id, time_limit_months)
         await msg.reply_text(f"User {user_id} added as a premium user with a {time_limit_months}-month subscription.")
     except ValueError:
@@ -220,11 +220,11 @@ async def add_premium_user(client: Client, msg: Message):
 
 @Bot.on_message(filters.private & filters.command('removeuser') & filters.user(ADMINS))
 async def remove_user(client: Client, msg: Message):
-    if len(msg.command) != 1:
+    if len(msg.command) != 2:
         await msg.reply_text("Format: /removeuser user_id must be an integer")
         return
     try:
-        user_id = int(msg.command[0])
+        user_id = int(msg.command[1])
         deleted_count = remove_premium(user_id)
         if deleted_count > 0:
             await msg.reply_text(f"User {user_id} has been removed.")
