@@ -233,10 +233,18 @@ async def remove_user(client: Client, msg: Message):
 
 @Bot.on_message(filters.private & filters.command('listuser') & filters.user(ADMINS))
 async def list_premium_users_command(client, message):
-    premium_user_list = await list_premium_users()
+    premium_users = collection.find({})
+    premium_user_list = []
+
+    for user in premium_users:
+        user_id = user["user_id"]
+        user_info = Bot.get_users(user_id)
+        username = user_info.username if user_info.username else user_info.first_name
+        expiration_timestamp = user["expiration_timestamp"]
+        premium_user_list.append(f"{user_id} - {username} - Expiration Timestamp: {expiration_timestamp}
 
     if premium_user_list:
-        formatted_list = [f"Premium Users in the Database:\n{user_id}" for user_id in premium_user_list]
+        formatted_list = [f"Premium Users in the Database:\n{user}" for user in premium_user_list]
         await message.reply_text("\n".join(formatted_list))
     else:
         await message.reply_text("No premium users found in the database.")
