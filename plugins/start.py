@@ -233,12 +233,13 @@ async def remove_user(client: Client, msg: Message):
 
 @Bot.on_message(filters.private & filters.command('listuser') & filters.user(ADMINS))
 async def list_premium_users_command(client, message):
+    get_users_instance = GetUsers()
     premium_users = collection.find({})
     premium_user_list = []
 
     for user in premium_users:
-        user_id = user["user_id"]
-        user_info = Bot.get_users(user_id)
+        user_ids = [user_id]
+        user_info = get_users_instance.get_users(user_ids)
         username = user_info.username if user_info.username else user_info.first_name
         expiration_timestamp = user["expiration_timestamp"]
         premium_user_list.append(f"{user_id} - {username} - Expiration Timestamp: {expiration_timestamp}")
