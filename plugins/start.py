@@ -234,7 +234,7 @@ async def remove_user(client: Client, msg: Message):
         await msg.reply_text("user_id must be an integer. Please recheck.")
 
 @Bot.on_message(filters.private & filters.command('listuser') & filters.user(ADMINS))
-def list_premium_users_command(client: Client, msg: Message):
+async def list_premium_users_command(client: Client, msg: Message):
     premium_user_list = list_premium_users()
 
     if premium_user_list:
