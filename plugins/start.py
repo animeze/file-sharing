@@ -239,7 +239,7 @@ async def list_premium_users_command(client, message):
     async for user in premium_users:
         user_ids = user["user_id"]
         user_info =  client.get_users(user_ids)
-        await username = user_info.username if user_info.username else user_info.first_name
+        await username == user_info.username if user_info.username else user_info.first_name
         expiration_timestamp = user["expiration_timestamp"]
         premium_user_list.append(f"{user_id} - {username} - Expiration Timestamp: {expiration_timestamp}")
 
