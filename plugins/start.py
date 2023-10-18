@@ -225,7 +225,7 @@ async def remove_user(client: Client, msg: Message):
         return
     try:
         user_id = int(msg.command[1])
-        remove_premium(user_id)
+        await remove_premium(user_id)
         await msg.reply_text(f"User {user_id} has been removed.")
     except ValueError:
         await msg.reply_text("user_id must be an integer or not available in database.")
