@@ -225,13 +225,10 @@ async def remove_user(client: Client, msg: Message):
         return
     try:
         user_id = int(msg.command[1])
-        deleted_count = remove_premium(user_id)
-        if deleted_count >= 1:
-            await msg.reply_text(f"User {user_id} has been removed.")
-        else:
-            await msg.reply_text(f"User {user_id} not found in the database.")
+        remove_premium(user_id)
+        await msg.reply_text(f"User {user_id} has been removed.")
     except ValueError:
-        await msg.reply_text("user_id must be an integer. Please recheck.")
+        await msg.reply_text("user_id must be an integer or not available in database.")
 
 @Bot.on_message(filters.private & filters.command('listuser') & filters.user(ADMINS))
 async def list_premium_users_command(client, message):
