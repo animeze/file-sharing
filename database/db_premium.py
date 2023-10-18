@@ -28,6 +28,3 @@ async def remove_expired_users():
     for expired_user in expired_users:
         user_id = expired_user["user_id"]
         collection.delete_one({"user_id": user_id})
-
-async def list_premium_users():
-    premium_users = collection.find({})
