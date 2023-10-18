@@ -55,7 +55,7 @@ def remove_expired_users():
     current_timestamp = int(time.time())
 
     # Find and delete expired users
-    expired_users = collection.find({"expiration_timestamp": {"$lte": current_timestamp}}
+    expired_users = collection.find({"expiration_timestamp": {"$lte": current_timestamp}})
     
     for expired_user in expired_users:
         user_id = expired_user["user_id"]
