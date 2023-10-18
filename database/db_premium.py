@@ -1,7 +1,6 @@
 import time
 import pymongo, os
 from config import DB_URI, DB_NAME
-from bot import Bot
 
 
 dbclient = pymongo.MongoClient(DB_URI)
@@ -31,16 +30,4 @@ async def remove_expired_users():
         collection.delete_one({"user_id": user_id})
 
 async def list_premium_users():
-
     premium_users = collection.find({})
-    
-    premium_user_list = []
-
-    for user in premium_users:
-        user_id = user["user_id"]
-        user_info = Bot.get_users(user_id)
-        username = user_info.username if user_info.username else user_info.first_name
-        expiration_timestamp = user["expiration_timestamp"]
-        premium_user_list.append(f"{user_id} - {username} - Expiration Timestamp: {expiration_timestamp}")
-
-    return premium_user_list
