@@ -241,7 +241,7 @@ async def list_premium_users_command(client, message):
         user_info = Bot.get_users(user_id)
         username = user_info.username if user_info.username else user_info.first_name
         expiration_timestamp = user["expiration_timestamp"]
-        premium_user_list.append(f"{user_id} - {username} - Expiration Timestamp: {expiration_timestamp}
+        premium_user_list.append(f"{user_id} - {username} - Expiration Timestamp: {expiration_timestamp}")
 
     if premium_user_list:
         formatted_list = [f"Premium Users in the Database:\n{user}" for user in premium_user_list]
