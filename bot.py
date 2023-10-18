@@ -31,7 +31,6 @@ class Bot(Client):
 
     async def start(self):
         await super().start()
-        super().add_job(remove_expired_users, interval=3600)
         usr_bot_me = await self.get_me()
         self.uptime = datetime.now()
 
