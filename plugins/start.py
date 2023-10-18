@@ -225,7 +225,7 @@ async def remove_user(client: Client, msg: Message):
         return
     try:
         user_id = int(msg.command[1])
-        deleted_count = remove_premium(user_id)
+        deleted_count = await remove_premium(user_id)
         if deleted_count > 0:
             await msg.reply_text(f"User {user_id} has been removed.")
         else:
@@ -234,13 +234,14 @@ async def remove_user(client: Client, msg: Message):
         await msg.reply_text("user_id must be an integer. Please recheck.")
 
 @Bot.on_message(filters.private & filters.command('listuser') & filters.user(ADMINS))
-async def list_premium_users_command(client: Client, msg: Message):
+async def list_premium_users_command(client, message):
     premium_user_list = list_premium_users()
 
     if premium_user_list:
-        await msg.reply_text("Premium Users in the Database:\n" + "\n".join(premium_user_list))
+        formatted_list = [f"Premium Users in the Database:\n{user}" for user in premium_user_list]
+        message.reply_text("\n".join(formatted_list))
     else:
-        await msg.reply_text("No premium users found in the database.")
+        message.reply_text("No premium users found in the database.")
  
 
 
