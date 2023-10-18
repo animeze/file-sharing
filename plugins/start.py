@@ -213,7 +213,7 @@ async def add_premium_user(client: Client, msg: Message):
     try:
         user_id = int(msg.command[1])
         time_limit_months = int(msg.command[2])
-        add_premium(user_id, time_limit_months)
+        await add_premium(user_id, time_limit_months)
         await msg.reply_text(f"User {user_id} added as a premium user with a {time_limit_months}-month subscription.")
     except ValueError:
         await msg.reply_text("Invalid user_id or time_limit. Please recheck.")
