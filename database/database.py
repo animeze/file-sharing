@@ -69,7 +69,7 @@ async def list_premium_users():
     
     premium_user_list = []
 
-    async for user in premium_users:
+    for user in premium_users:
         user_id = user["user_id"]
         user_info = Bot.get_users(user_id)
         username = user_info.username if user_info.username else user_info.first_name
