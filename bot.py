@@ -13,10 +13,6 @@ from config import API_HASH, APP_ID, LOGGER, TG_BOT_TOKEN, TG_BOT_WORKERS, FORCE
 from dotenv import load_dotenv
 from database.database import *
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
-scheduler = AsyncIOScheduler()
-scheduler.add_job(remove_expired_users(), "interval", seconds=3600)
-scheduler.start()
-
 load_dotenv(".env")
 
 class Bot(Client):
