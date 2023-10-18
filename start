@@ -1,4 +1,6 @@
 echo "started"
-git pull -f -q
+rm -rf app
+git clone https://github.com/Rajbhaiya/file-sharing/ app
+cd app
 pip install --quiet -r requirements.txt
 python3 -m main.py
