@@ -38,11 +38,11 @@ async def del_user(user_id: int):
 
 async def add_premium(user_id, time_limit_months):
     expiration_timestamp = int(time.time()) + time_limit_months * 30 * 24 * 60 * 60
-    user_data = {
+    premium_data = {
         "user_id": user_id,
         "expiration_timestamp": expiration_timestamp,
     }
-    collection.insert_one(user_data)
+    collection.insert_one(premium_data)
     dbclient.close()
 
 async def remove_premium(user_id):
