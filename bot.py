@@ -11,6 +11,7 @@ from datetime import datetime
 
 from config import API_HASH, APP_ID, LOGGER, TG_BOT_TOKEN, TG_BOT_WORKERS, FORCE_SUB_CHANNEL, CHANNEL_ID, PORT
 from dotenv import load_dotenv
+from database.database import *
 
 load_dotenv(".env")
 
@@ -30,6 +31,7 @@ class Bot(Client):
 
     async def start(self):
         await super().start()
+        await super().add_job(remove_expired_users(), interval=3600)
         usr_bot_me = await self.get_me()
         self.uptime = datetime.now()
 
