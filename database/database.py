@@ -46,16 +46,8 @@ async def add_premium(user_id, time_limit_months):
     dbclient.close()
 
 async def remove_premium(user_id):
-    premium_data = {
-        "user_id": user_id,
-        "expiration_timestamp": expiration_timestamp,
-    }
-    db_item = collection.find_one(premium_data)
-    if db_item:
-        if db_item.get("expiration_timestamp"):
-            collection.update_one(channel_data, {"$set": {"expiration_timestamp": None}})
-        else:
-            collection.delete_one(db_item)
+    result = collection.delete_one({"user_id": user_id})
+    dbclient.close()
 
 async def remove_expired_users():
     current_timestamp = int(time.time())
