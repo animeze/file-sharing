@@ -3,6 +3,7 @@
 
 
 import time
+from bot import Bot
 import pymongo, os
 from config import DB_URI, DB_NAME
 
@@ -46,7 +47,7 @@ async def add_premium(user_id, time_limit_months):
     dbclient.close()
 
 async def remove_premium(user_id):
-    result = collection.delete_one({"user_id": user_id})
+    result = await collection.delete_one({"user_id": user_id})
     deleted_count = result.deleted_count
     dbclient.close()
     return deleted_count
@@ -55,7 +56,7 @@ async def remove_expired_users():
     current_timestamp = int(time.time())
 
     # Find and delete expired users
-    expired_users = collection.find({"expiration_timestamp": {"$lte": current_timestamp}})
+    expired_users = await collection.find({"expiration_timestamp": {"$lte": current_timestamp}})
     
     for expired_user in expired_users:
         user_id = expired_user["user_id"]
@@ -64,13 +65,14 @@ async def remove_expired_users():
     dbclient.close()
 
 async def list_premium_users():
-    premium_users = collection.find({})
+
+    premium_users = await collection.find({})
     
     premium_user_list = []
 
-    for user in premium_users:
+    async for user in premium_users:
         user_id = user["user_id"]
-        user_info = app.get_chat(user_id)
+        user_info = await Bot.get_users(user_id)
         username = user_info.username if user_info.username else user_info.first_name
         expiration_timestamp = user["expiration_timestamp"]
         premium_user_list.append(f"{user_id} - {username} - Expiration Timestamp: {expiration_timestamp}")
