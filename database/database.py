@@ -51,17 +51,17 @@ async def remove_premium(user_id):
     dbclient.close()
     return deleted_count
 
-#async def remove_expired_users():
-#    current_timestamp = int(time.time())
+async def remove_expired_users():
+    current_timestamp = int(time.time())
 
     # Find and delete expired users
- #   expired_users = collection.find({"expiration_timestamp": {"$lte": current_timestamp}})
+    expired_users = collection.find({"expiration_timestamp": {"$lte": current_timestamp}})
     
-  #  for expired_user in expired_users:
-   #     user_id = expired_user["user_id"]
-    #    collection.delete_one({"user_id": user_id})
+    for expired_user in expired_users:
+        user_id = expired_user["user_id"]
+        collection.delete_one({"user_id": user_id})
 
-    #dbclient.close()
+    dbclient.close()
 
 async def list_premium_users():
     premium_users = collection.find({})
