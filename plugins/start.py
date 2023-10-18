@@ -225,7 +225,7 @@ async def remove_user(client: Client, msg: Message):
         return
     try:
         user_id = int(msg.command[1])
-        deleted_count = await remove_premium(user_id)
+        deleted_count = remove_premium(user_id)
         if deleted_count >= 1:
             await msg.reply_text(f"User {user_id} has been removed.")
         else:
