@@ -34,6 +34,9 @@ async def start_command(client: Client, message: Message):
         except:
             return
         string = await decode(base64_string)
+        if string.startswith("pay2get"):
+            if not is_premium_user(message.from_user.id):
+                return
         argument = string.split("-")
         if len(argument) == 3:
             try:
