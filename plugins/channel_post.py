@@ -29,4 +29,4 @@ async def channel_post(client: Client, message: Message):
     base64_string = await encode(string)
     link2 = f"https://t.me/{client.username}?start={base64_string}"
 
-    await reply_text.edit(f"> <b>Here is your link</b>{link}\n\n> <b>Premium Link:</b>{link2}", disable_web_page_preview = True)
+    await reply_text.edit(f"<b>> Here is your link: </b>{link}\n\n<b>> Premium Link: </b>{link2}", disable_web_page_preview = True)
