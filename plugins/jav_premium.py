@@ -33,7 +33,7 @@ async def jav_remove_user(client: Client, msg: Message):
     except ValueError:
         await msg.reply_text("user_id must be an integer or not available in database.")
 
-@Bot.on_message(filters.private & filters.command('listuser') & filters.user(ADMINS))
+@Bot.on_message(filters.private & filters.command('listjav') & filters.user(ADMINS))
 async def jav_premium_users_command(client, message):
     premium_users = collection.find({})
     premium_user_list = []
