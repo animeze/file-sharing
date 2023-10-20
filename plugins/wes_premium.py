@@ -28,7 +28,7 @@ async def remove_user(client: Client, msg: Message):
     try:
         user_id = int(msg.command[1])
         await wes_remove_premium(user_id)
-        await msg.reply_text(f"User {user_id} has been removed.")
+        await msg.reply_text(f"User {user_id} has been removed from wes database.")
     except ValueError:
         await msg.reply_text("user_id must be an integer or not available in database.")
 
@@ -48,6 +48,6 @@ async def wes_premium_users_command(client, message):
 
     if premium_user_list:
         formatted_list = [f"{user}" for user in premium_user_list]
-        await message.reply_text("Premium Users For Jav in the Database:\n\n".join(formatted_list))
+        await message.reply_text("Premium Users For Western Porn in the Database:\n\n".join(formatted_list))
     else:
         await message.reply_text("No premium users found in the database.")
