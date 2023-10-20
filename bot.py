@@ -15,6 +15,8 @@ from database.db_premium import *
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 scheduler = AsyncIOScheduler()
 scheduler.add_job(remove_expired_users, "interval", seconds=3600)
+scheduler.add_job(jav_remove_expired_users, "interval", seconds=3600)
+scheduler.add_job(wes_remove_expired_users, "interval", seconds=3600)
 scheduler.start()
 
 load_dotenv(".env")
