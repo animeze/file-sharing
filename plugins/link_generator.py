@@ -35,12 +35,15 @@ async def batch(client: Client, message: Message):
 
     string = f"get-{f_msg_id * abs(client.db_channel.id)}-{s_msg_id * abs(client.db_channel.id)}"
     base64_string = await encode(string)
+    link = f"https://telegram.me/{client.username}?start={base64_string}"
+    string = string.replace("get-", "jav-")
+    base64_string = await encode(string)
     link1 = f"https://telegram.me/{client.username}?start={base64_string}"
-    string = string.replace("get-", "pay2get-")
+    string = string.replace("get-", "wes-")
     base64_string = await encode(string)
     link2 = f"https://telegram.me/{client.username}?start={base64_string}"
 
-    reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton("🆓 Link", url=f"{link1}")], [InlineKeyboardButton("💵 Link", url=f"{link2}", )]])
+    reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton("🆓 Link", url=f"{link1}")], [InlineKeyboardButton("Jav Link", url=f"{link1}")], [InlineKeyboardButton("Wes Link", url=f"{link2}")]])
     await second_message.reply_text(f"<b>Here are your links.</b>", quote=True, reply_markup=reply_markup)
 
 
