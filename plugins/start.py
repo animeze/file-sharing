@@ -208,7 +208,7 @@ Unsuccessful: <code>{unsuccessful}</code></b>"""
         await msg.delete()
 
 # for premium user
-@Bot.on_message(filters.private & filters.command('addpremium') & filters.user(ADMINS))
+@Bot.on_message(filters.private & filters.command('adduser') & filters.user(ADMINS))
 async def add_premium_user(client: Client, msg: Message):
     if len(msg.command) != 3:
         await msg.reply_text("Format: /addpremium user_id time_limit_months both must be integers")
