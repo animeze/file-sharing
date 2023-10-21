@@ -38,13 +38,13 @@ async def start_command(client: Client, message: Message):
         string = await decode(base64_string)
         if string.startswith("pay2get"):
             if not await is_premium_user(message.from_user.id):
-                if not await jav_premium_user(msg.from_user.id):
+                if not await jav_premium_user(message):
                     await message.reply_text("You're not a premium user. if you want buy premium services then contact @p0rn_provider")
                     return
 
         if string.startswith("wes"):
             if not await is_premium_user(message.from_user.id):
-                if not await wes_premium_user(msg.from_user.id):
+                if not await wes_premium_user(message):
                     await message.reply_text("You're not a premium user. if you want buy premium services then contact @p0rn_provider")
                     return
         argument = string.split("-")
