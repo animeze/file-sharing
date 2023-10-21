@@ -4,6 +4,7 @@ from pyrogram import Client, filters, __version__
 from pyrogram.enums import ParseMode
 from pyrogram.types import Message
 
+from helper_func import get_messages
 from bot import Bot
 from config import ADMINS
 from database.db_wes import *
