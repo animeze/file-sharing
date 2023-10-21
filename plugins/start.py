@@ -241,15 +241,16 @@ async def list_premium_users_command(client, message):
     for user in premium_users:
         user_ids = user["user_id"]
         user_info = await client.get_users(user_ids)
-        username = user_info.username if user_info.username else user_info.first_name
+        username = user_info.username
+        first_name = user_info.first_name
         expiration_timestamp = user["expiration_timestamp"]
         xt = (expiration_timestamp-(time.time()))
         x = round(xt/(24*60*60))
-        premium_user_list.append(f"User id:`{user_ids}`\n Username `{username}`\nExpiration Timestamp: {x} days")
+        premium_user_list.append(f"User id:<code>{user_ids}</code>\nUsername: @{username}\nName: <code>{first_name}</code>\nExpiration Timestamp: {x} days")
 
     if premium_user_list:
         formatted_list = [f"{user}" for user in premium_user_list]
-        await message.reply_text("\n\n".join(formatted_list), parse_mode='Markdown')
+        await message.reply_text("\n\n".join(formatted_list))
     else:
         await message.reply_text("No premium users found in the database.")
  
