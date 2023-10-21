@@ -286,7 +286,7 @@ async def remove_user(client: Client, msg: Message):
 @Bot.on_message(filters.private & filters.command('listwes') & filters.user(ADMINS))
 async def wes_premium_users_command(client, message):
     wes_users = wcollection.find({})
-    wes_user_list = []
+    wes_user_list = ['Wes Premium Users in database:']
 
     for user in wes_users:
         user_ids = user["user_id"]
@@ -295,7 +295,7 @@ async def wes_premium_users_command(client, message):
         expiration_timestamp = user["expiration_timestamp"]
         xt = (expiration_timestamp-(time.time()))
         x = round(xt/(24*60*60))
-        wes_user_list.append(f"User id:`{user_ids}`\n Username `{username}`\nExpiration Timestamp: {x} days")
+        wes_user_list.append(f"User id:<code>{user_ids}</code>\nUsername: @{username}\nName: <code>{first_name}</code>\nExpiration Timestamp: {x} days")
 
     if wes_user_list:
         formatted_list = [f"{user}" for user in premium_user_list]
@@ -333,7 +333,7 @@ async def jav_remove_user(client: Client, msg: Message):
 @Bot.on_message(filters.private & filters.command('listjav') & filters.user(ADMINS))
 async def jav_premium_users_command(client, message):
     jav_users = jcollection.find({})
-    jav_user_list = []
+    jav_user_list = ['Jav Premium User in database:']
 
     for user in jav_users:
         user_ids = user["user_id"]
@@ -342,7 +342,7 @@ async def jav_premium_users_command(client, message):
         expiration_timestamp = user["expiration_timestamp"]
         xt = (expiration_timestamp-(time.time()))
         x = round(xt/(24*60*60))
-        jav_user_list.append(f"User id:`{user_ids}`\n Username `{username}`\nExpiration Timestamp: {x} days")
+        jav_user_list.append(f"User id:<code>{user_ids}</code>\nUsername: @{username}\nName: <code>{first_name}</code>\nExpiration Timestamp: {x} days")
 
     if jav_user_list:
         formatted_list = [f"{user}" for user in premium_user_list]
