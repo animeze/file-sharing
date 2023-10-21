@@ -38,13 +38,13 @@ async def start_command(client: Client, message: Message):
         string = await decode(base64_string)
         if string.startswith("pay2get"):
             if not await is_premium_user(message.from_user.id):
-                if not await jav_premium_user(message.from_user.id):
+                if not await jav_premium_user(message):
                     await message.reply_text("You're not a premium user. if you want buy premium services then contact @p0rn_provider")
                     return
 
         if string.startswith("wes"):
             if not await is_premium_user(message.from_user.id):
-                if not await wes_premium_user(message.from_user.id):
+                if not await wes_premium_user(message):
                     await message.reply_text("You're not a premium user. if you want buy premium services then contact @p0rn_provider")
                     return
         argument = string.split("-")
@@ -299,7 +299,8 @@ async def wes_premium_users_command(client, message):
     for user in wes_users:
         user_ids = user["user_id"]
         user_info = await client.get_users(user_ids)
-        username = user_info.username if user_info.username else user_info.first_name
+        username = user_info.username
+        first_name = user_info.first_name
         expiration_timestamp = user["expiration_timestamp"]
         xt = (expiration_timestamp-(time.time()))
         x = round(xt/(24*60*60))
@@ -346,7 +347,8 @@ async def jav_premium_users_command(client, message):
     for user in jav_users:
         user_ids = user["user_id"]
         user_info = await client.get_users(user_ids)
-        username = user_info.username if user_info.username else user_info.first_name
+        username = user_info.username
+        first_name = user_info.first_name
         expiration_timestamp = user["expiration_timestamp"]
         xt = (expiration_timestamp-(time.time()))
         x = round(xt/(24*60*60))
