@@ -5,7 +5,7 @@ from config import DB_URI, DB_NAME
 
 dbclient = pymongo.MongoClient(DB_URI)
 database = dbclient[DB_NAME]
-collection = database['jav-users']
+jcollection = database['jav-users']
 
 
 async def jav_add_premium(user_id, time_limit_days):
@@ -14,21 +14,21 @@ async def jav_add_premium(user_id, time_limit_days):
         "user_id": user_id,
         "expiration_timestamp": expiration_timestamp,
     }
-    collection.insert_one(premium_data)
+    jcollection.insert_one(premium_data)
 
 async def jav_remove_premium(user_id):
-    result = collection.delete_one({"user_id": user_id})
+    result = jcollection.delete_one({"user_id": user_id})
 
 async def jav_remove_expired_users():
     current_timestamp = int(time.time())
 
     # Find and delete expired users
-    expired_users = collection.find({"expiration_timestamp": {"$lte": current_timestamp}})
+    expired_users = jcollection.find({"expiration_timestamp": {"$lte": current_timestamp}})
     
     for expired_user in expired_users:
         user_id = expired_user["user_id"]
-        collection.delete_one({"user_id": user_id})
+        jcollection.delete_one({"user_id": user_id})
 
 async def jav_premium_user(user_id):
-    user = collection.find_one({"user_id": user_id})
+    user = jcollection.find_one({"user_id": user_id})
     return user is not None
