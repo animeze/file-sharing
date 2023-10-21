@@ -38,13 +38,13 @@ async def start_command(client: Client, message: Message):
         string = await decode(base64_string)
         if string.startswith("pay2get"):
             if not await is_premium_user(message.from_user.id):
-                if not await jav_premium_user(message):
+                if not await jav_premium_user(msg.from_user.id):
                     await message.reply_text("You're not a premium user. if you want buy premium services then contact @p0rn_provider")
                     return
 
         if string.startswith("wes"):
             if not await is_premium_user(message.from_user.id):
-                if not await wes_premium_user(message):
+                if not await wes_premium_user(msg.from_user.id):
                     await message.reply_text("You're not a premium user. if you want buy premium services then contact @p0rn_provider")
                     return
         argument = string.split("-")
@@ -269,7 +269,7 @@ async def list_premium_users_command(client, message):
 @Bot.on_message(filters.private & filters.command('addwes') & filters.user(ADMINS))
 async def wes_premium_user(client: Client, msg: Message):
     if len(msg.command) != 3:
-        await msg.reply_text("Format: /addpremium user_id time_limit_days both must be integers")
+        await msg.reply_text("Format: /addwes user_id time_limit_days both must be integers")
         return
     try:
         user_id = int(msg.command[1])
@@ -282,7 +282,7 @@ async def wes_premium_user(client: Client, msg: Message):
 @Bot.on_message(filters.private & filters.command('removewes') & filters.user(ADMINS))
 async def remove_user(client: Client, msg: Message):
     if len(msg.command) != 2:
-        await msg.reply_text("Format: /removeuser user_id must be an integer")
+        await msg.reply_text("Format: /removewes user_id must be an integer")
         return
     try:
         user_id = int(msg.command[1])
@@ -307,7 +307,7 @@ async def wes_premium_users_command(client, message):
         wes_user_list.append(f"User id:<code>{user_ids}</code>\nUsername: @{username}\nName: <code>{first_name}</code>\nExpiration Timestamp: {x} days")
 
     if wes_user_list:
-        formatted_list = [f"{user}" for user in premium_user_list]
+        formatted_list = [f"{user}" for user in wes_user_list]
         await message.reply_text("Premium Users For Western Porn in the Database:\n\n".join(formatted_list))
     else:
         await message.reply_text("No premium users found in the database.")
@@ -317,7 +317,7 @@ async def wes_premium_users_command(client, message):
 @Bot.on_message(filters.private & filters.command('addjav') & filters.user(ADMINS))
 async def jav_premium_user(client: Client, msg: Message):
     if len(msg.command) != 3:
-        await msg.reply_text("Format: /addpremium user_id time_limit_days both must be integers")
+        await msg.reply_text("Format: /addjav user_id time_limit_days both must be integers")
         return
     try:
         user_id = int(msg.command[1])
@@ -330,7 +330,7 @@ async def jav_premium_user(client: Client, msg: Message):
 @Bot.on_message(filters.private & filters.command('removejav') & filters.user(ADMINS))
 async def jav_remove_user(client: Client, msg: Message):
     if len(msg.command) != 2:
-        await msg.reply_text("Format: /removeuser user_id must be an integer")
+        await msg.reply_text("Format: /removejav user_id must be an integer")
         return
     try:
         user_id = int(msg.command[1])
@@ -355,7 +355,7 @@ async def jav_premium_users_command(client, message):
         jav_user_list.append(f"User id:<code>{user_ids}</code>\nUsername: @{username}\nName: <code>{first_name}</code>\nExpiration Timestamp: {x} days")
 
     if jav_user_list:
-        formatted_list = [f"{user}" for user in premium_user_list]
+        formatted_list = [f"{user}" for user in jav_user_list]
         await message.reply_text("Premium Users For Jav in the Database:\n\n".join(formatted_list))
     else:
         await message.reply_text("No premium users found in the database.")
