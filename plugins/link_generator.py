@@ -43,7 +43,7 @@ async def batch(client: Client, message: Message):
     base64_string = await encode(string)
     link2 = f"https://telegram.me/{client.username}?start={base64_string}"
 
-    reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton("🆓 Link", url=f"{link1}")], [InlineKeyboardButton("Jav Link", url=f"{link1}")], [InlineKeyboardButton("Wes Link", url=f"{link2}")]])
+    reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton("🆓 Link", url=f"{link}")], [InlineKeyboardButton("Jav Link", url=f"{link1}")], [InlineKeyboardButton("Wes Link", url=f"{link2}")]])
     await second_message.reply_text(f"<b>Here are your links.</b>", quote=True, reply_markup=reply_markup)
 
 
