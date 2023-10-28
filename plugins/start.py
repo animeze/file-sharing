@@ -17,6 +17,7 @@ from database.database import *
 from database.db_premium import *
 from database.db_wes import *
 from database.db_jav import *
+from database.db_hentai import *
 
 
 
@@ -38,14 +39,21 @@ async def start_command(client: Client, message: Message):
         string = await decode(base64_string)
         if string.startswith("pay2get"):
             if not await is_premium_user(message.from_user.id):
-                await message.reply_text("You're not a premium user. if you want buy premium services then contact @p0rn_provider")
-                return
+                if not await jav_premium_user(message.from_user.id):
+                    await message.reply_text("You're not a premium user. if you want buy premium services then contact @the_piro")
+                    return
 
-        #if string.startswith("wes"): error - TypeError: jav_premium_user() missing 1 required positional argument: 'msg'
-            #if not await is_premium_user(message.from_user.id):
-               # if not await wes_premium_user(message):
-               #     await message.reply_text("You're not a premium user. if you want buy premium services then contact @p0rn_provider")
-              #      return
+        if string.startswith("wesporn"):
+            if not await is_premium_user(message.from_user.id):
+                if not await wes_premium_user(message.from_user.id):
+                    await message.reply_text("You're not a premium user. if you want buy premium services then contact @the_piro")
+                    return
+
+        if string.startswith("hentaix"):
+            if not await is_premium_user(message.from_user.id):
+                if not await hentai_premium_user(message.from_user.id):
+                    await message.reply_text("You're not a premium user. if you want buy premium services then contact @the_piro")
+                    return
         argument = string.split("-")
         if len(argument) == 3:
             try:
