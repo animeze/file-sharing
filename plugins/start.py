@@ -231,7 +231,7 @@ async def add_premium_user(client: Client, msg: Message):
         await msg.reply_text("Invalid user_id or time_limit. Please recheck.")
 
 @Bot.on_message(filters.private & filters.command('removeuser') & filters.user(ADMINS))
-async def remove_user(client: Client, msg: Message):
+async def pre_remove_user(client: Client, msg: Message):
     if len(msg.command) != 2:
         await msg.reply_text("Format: /removeuser user_id must be an integer")
         return
