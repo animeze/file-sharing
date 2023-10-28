@@ -367,6 +367,54 @@ async def jav_premium_users_command(client, message):
     else:
         await message.reply_text("No premium users found in the database.")
 
+#for hentai 
+
+@Bot.on_message(filters.private & filters.command('addhentai') & filters.user(ADMINS))
+async def hentai_premium_user_add(client: Client, msg: Message):
+    if len(msg.command) != 3:
+        await msg.reply_text("Format: /addjav user_id time_limit_days both must be integers")
+        return
+    try:
+        user_id = int(msg.command[1])
+        time_limit_months = int(msg.command[2])
+        await hentai_add_premium(user_id, time_limit_months)
+        await msg.reply_text(f"User {user_id} added as a premium user for Jav Porn with a {time_limit_months}-days subscription.")
+    except ValueError:
+        await msg.reply_text("Invalid user_id or time_limit. Please recheck.")
+
+@Bot.on_message(filters.private & filters.command('removehentai') & filters.user(ADMINS))
+async def hentai_remove_user(client: Client, msg: Message):
+    if len(msg.command) != 2:
+        await msg.reply_text("Format: /removejav user_id must be an integer")
+        return
+    try:
+        user_id = int(msg.command[1])
+        await hentai_remove_premium(user_id)
+        await msg.reply_text(f"User {user_id} has been removed from jav database.")
+    except ValueError:
+        await msg.reply_text("user_id must be an integer or not available in database.")
+
+@Bot.on_message(filters.private & filters.command('listhentai') & filters.user(ADMINS))
+async def hentai_premium_users_command(client, message):
+    hentai_users = hcollection.find({})
+    hentai_user_list = ['Jav Premium User in database:']
+
+    for user in hentai_users:
+        user_ids = user["user_id"]
+        user_info = await client.get_users(user_ids)
+        username = user_info.username
+        first_name = user_info.first_name
+        expiration_timestamp = user["expiration_timestamp"]
+        xt = (expiration_timestamp-(time.time()))
+        x = round(xt/(24*60*60))
+        hentai_user_list.append(f"User id:<code>{user_ids}</code>\nUsername: @{username}\nName: <code>{first_name}</code>\nExpiration Timestamp: {x} days")
+
+    if hentai_user_list:
+        formatted_list = [f"{user}" for user in jav_user_list]
+        await message.reply_text("Premium Users For Jav in the Database:\n\n".join(formatted_list))
+    else:
+        await message.reply_text("No premium users found in the database.")
+
 
 
     
