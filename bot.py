@@ -11,13 +11,15 @@ from datetime import datetime
 
 from config import API_HASH, APP_ID, LOGGER, TG_BOT_TOKEN, TG_BOT_WORKERS, FORCE_SUB_CHANNEL, CHANNEL_ID, PORT
 from dotenv import load_dotenv
-from database.db_premium import *
-from database.db_jav import *
-from database.db_wes import *
+from database.db_premium import remove_expired_users
+from database.db_jav import jav_remove_expired_users
+from database.db_wes import wes_remove_expired_users
+from database.db_hentai import hentai_remove_expired_users
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 scheduler = AsyncIOScheduler()
 scheduler.add_job(remove_expired_users, "interval", seconds=3600)
 scheduler.add_job(jav_remove_expired_users, "interval", seconds=3600)
+scheduler.add_job(hentai_remove_expired_users, "interval", seconds=3600)
 scheduler.add_job(wes_remove_expired_users, "interval", seconds=3600)
 scheduler.start()
 
