@@ -266,7 +266,7 @@ async def list_premium_users_command(client, message):
 #for western porn
 
 @Bot.on_message(filters.private & filters.command('addwes') & filters.user(ADMINS))
-async def wes_premium_user(client: Client, msg: Message):
+async def wes_premium_user_command(client: Client, msg: Message):
     if len(msg.command) != 3:
         await msg.reply_text("Format: /addwes user_id time_limit_days both must be integers")
         return
@@ -279,7 +279,7 @@ async def wes_premium_user(client: Client, msg: Message):
         await msg.reply_text("Invalid user_id or time_limit. Please recheck.")
 
 @Bot.on_message(filters.private & filters.command('removewes') & filters.user(ADMINS))
-async def remove_user(client: Client, msg: Message):
+async def wes_remove_user(client: Client, msg: Message):
     if len(msg.command) != 2:
         await msg.reply_text("Format: /removewes user_id must be an integer")
         return
@@ -314,7 +314,7 @@ async def wes_premium_users_command(client, message):
 #for jav
 
 @Bot.on_message(filters.private & filters.command('addjav') & filters.user(ADMINS))
-async def jav_premium_user(client: Client, msg: Message):
+async def jav_premium_user_add(client: Client, msg: Message):
     if len(msg.command) != 3:
         await msg.reply_text("Format: /addjav user_id time_limit_days both must be integers")
         return
