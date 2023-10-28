@@ -25,12 +25,18 @@ async def channel_post(client: Client, message: Message):
     string = f"get-{converted_id}"
     base64_string = await encode(string)
     link = f"https://telegram.me/{client.username}?start={base64_string}"
+
+    string = f"get-{converted_id}"
     string = string.replace("get-", "pay2get-")
     base64_string = await encode(string)
     link1 = f"https://telegram.me/{client.username}?start={base64_string}"
+
+    string = f"get-{converted_id}"
     string = string.replace("get-", "wesporn-")
     base64_string = await encode(string)
     link2 = f"https://telegram.me/{client.username}?start={base64_string}"
+
+    string = f"get-{converted_id}"
     string = string.replace("get-", "hentaix-")
     base64_string = await encode(string)
     link3 = f"https://telegram.me/{client.username}?start={base64_string}"
