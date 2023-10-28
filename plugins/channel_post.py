@@ -28,9 +28,12 @@ async def channel_post(client: Client, message: Message):
     string = string.replace("get-", "pay2get-")
     base64_string = await encode(string)
     link1 = f"https://telegram.me/{client.username}?start={base64_string}"
-    string = string.replace("get-", "wes-")
+    string = string.replace("get-", "wesporn-")
     base64_string = await encode(string)
     link2 = f"https://telegram.me/{client.username}?start={base64_string}"
+    string = string.replace("get-", "hentaix-")
+    base64_string = await encode(string)
+    link3 = f"https://telegram.me/{client.username}?start={base64_string}"
     
 
-    await reply_text.edit(f"<b>> Here is your link: </b>{link}\n\n<b>> Premium Jav Link : </b>{link1}\n\n<b>> Premium Wes Link : </b>{link2}", disable_web_page_preview = True)
+    await reply_text.edit(f"<b>> Here is your link: </b>{link}\n\n<b>> Premium Jav Link : </b>{link1}\n\n<b>> Premium Wes Link : </b>{link2}\n\n<b>> Premium Hentai Link : </b>{link3}", disable_web_page_preview = True)
