@@ -11,7 +11,7 @@ from dotenv import load_dotenv
 
 
 #Bot token @Botfather
-TG_BOT_TOKEN = os.environ.get("TG_BOT_TOKEN", "6459868073:AAE61Wom_Cm3KtSTkpIdHkYnaWfPxbOEq90")
+TG_BOT_TOKEN = os.environ.get("TG_BOT_TOKEN", "6950575243:AAHdA66hzouJAdPTLMgd5lrzbBcgw5OhyWg")
 
 #Your API ID from my.telegram.org
 APP_ID = int(os.environ.get("APP_ID", "13675555"))
@@ -20,10 +20,10 @@ APP_ID = int(os.environ.get("APP_ID", "13675555"))
 API_HASH = os.environ.get("API_HASH", "c0da9c346d2c45dbc7ec49a05da9b2b6")
 
 #Your db channel Id
-CHANNEL_ID = int(os.environ.get("CHANNEL_ID", "-1001970869090"))
+CHANNEL_ID = int(os.environ.get("CHANNEL_ID", "-1001550448024"))
 
 #OWNER ID
-OWNER_ID = int(os.environ.get("OWNER_ID", "5591954930"))
+OWNER_ID = int(os.environ.get("OWNER_ID", "1880221341"))
 
 #Port
 PORT = os.environ.get("PORT", "8080")
