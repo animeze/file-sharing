@@ -40,19 +40,19 @@ async def start_command(client: Client, message: Message):
         if string.startswith("pay2get"):
             if not await is_premium_user(message.from_user.id):
                 if not await jav_premium_user(message.from_user.id):
-                    await message.reply_text("You're not a premium user. if you want buy premium services then contact @the_piro")
+                    await message.reply_text("You're not a premium user. if you want buy premium services then contact @HandsumGuyOp")
                     return
 
         if string.startswith("wesporn"):
             if not await is_premium_user(message.from_user.id):
                 if not await wes_premium_user(message.from_user.id):
-                    await message.reply_text("You're not a premium user. if you want buy premium services then contact @the_piro")
+                    await message.reply_text("You're not a premium user. if you want buy premium services then contact @HandsumGuyOp")
                     return
 
         if string.startswith("hentaix"):
             if not await is_premium_user(message.from_user.id):
                 if not await hentai_premium_user(message.from_user.id):
-                    await message.reply_text("You're not a premium user. if you want buy premium services then contact @the_piro")
+                    await message.reply_text("You're not a premium user. if you want buy premium services then contact @HandsumGuyOp")
                     return
         argument = string.split("-")
         if len(argument) == 3:
@@ -282,7 +282,7 @@ async def wes_premium_user_command(client: Client, msg: Message):
         user_id = int(msg.command[1])
         time_limit_months = int(msg.command[2])
         await wes_add_premium(user_id, time_limit_months)
-        await msg.reply_text(f"User {user_id} added as a premium user for western Porn with a {time_limit_months}-days subscription.")
+        await msg.reply_text(f"User {user_id} added as a premium user for Other Porn with a {time_limit_months}-days subscription.")
     except ValueError:
         await msg.reply_text("Invalid user_id or time_limit. Please recheck.")
 
@@ -294,14 +294,14 @@ async def wes_remove_user(client: Client, msg: Message):
     try:
         user_id = int(msg.command[1])
         await wes_remove_premium(user_id)
-        await msg.reply_text(f"User {user_id} has been removed from wes database.")
+        await msg.reply_text(f"User {user_id} has been removed from otherp0rn database.")
     except ValueError:
         await msg.reply_text("user_id must be an integer or not available in database.")
 
 @Bot.on_message(filters.private & filters.command('listwes') & filters.user(ADMINS))
 async def wes_premium_users_command(client, message):
     wes_users = wcollection.find({})
-    wes_user_list = ['Wes Premium Users in database:']
+    wes_user_list = ['Other p0rn Premium Users in database:']
 
     for user in wes_users:
         user_ids = user["user_id"]
@@ -315,7 +315,7 @@ async def wes_premium_users_command(client, message):
 
     if wes_user_list:
         formatted_list = [f"{user}" for user in wes_user_list]
-        await message.reply_text("Premium Users For Western Porn in the Database:\n\n".join(formatted_list))
+        await message.reply_text("Premium Users For Adult Porn in the Database:\n\n".join(formatted_list))
     else:
         await message.reply_text("No premium users found in the database.")
 
@@ -324,25 +324,25 @@ async def wes_premium_users_command(client, message):
 @Bot.on_message(filters.private & filters.command('addjav') & filters.user(ADMINS))
 async def jav_premium_user_add(client: Client, msg: Message):
     if len(msg.command) != 3:
-        await msg.reply_text("Format: /addjav user_id time_limit_days both must be integers")
+        await msg.reply_text("Format: /adddesi user_id time_limit_days both must be integers")
         return
     try:
         user_id = int(msg.command[1])
         time_limit_months = int(msg.command[2])
         await jav_add_premium(user_id, time_limit_months)
-        await msg.reply_text(f"User {user_id} added as a premium user for Jav Porn with a {time_limit_months}-days subscription.")
+        await msg.reply_text(f"User {user_id} added as a premium user for Desi Leak with a {time_limit_months}-days subscription.")
     except ValueError:
         await msg.reply_text("Invalid user_id or time_limit. Please recheck.")
 
 @Bot.on_message(filters.private & filters.command('removejav') & filters.user(ADMINS))
 async def jav_remove_user(client: Client, msg: Message):
     if len(msg.command) != 2:
-        await msg.reply_text("Format: /removejav user_id must be an integer")
+        await msg.reply_text("Format: /removedesi user_id must be an integer")
         return
     try:
         user_id = int(msg.command[1])
         await jav_remove_premium(user_id)
-        await msg.reply_text(f"User {user_id} has been removed from jav database.")
+        await msg.reply_text(f"User {user_id} has been removed from desi database.")
     except ValueError:
         await msg.reply_text("user_id must be an integer or not available in database.")
 
@@ -363,7 +363,7 @@ async def jav_premium_users_command(client, message):
 
     if jav_user_list:
         formatted_list = [f"{user}" for user in jav_user_list]
-        await message.reply_text("Premium Users For Jav in the Database:\n\n".join(formatted_list))
+        await message.reply_text("Premium Users For Desi Leak in the Database:\n\n".join(formatted_list))
     else:
         await message.reply_text("No premium users found in the database.")
 
@@ -378,26 +378,26 @@ async def hentai_premium_user_add(client: Client, msg: Message):
         user_id = int(msg.command[1])
         time_limit_months = int(msg.command[2])
         await hentai_add_premium(user_id, time_limit_months)
-        await msg.reply_text(f"User {user_id} added as a premium user for Jav Porn with a {time_limit_months}-days subscription.")
+        await msg.reply_text(f"User {user_id} added as a premium user for Desi Leak with a {time_limit_months}-days subscription.")
     except ValueError:
         await msg.reply_text("Invalid user_id or time_limit. Please recheck.")
 
 @Bot.on_message(filters.private & filters.command('removehentai') & filters.user(ADMINS))
 async def hentai_remove_user(client: Client, msg: Message):
     if len(msg.command) != 2:
-        await msg.reply_text("Format: /removejav user_id must be an integer")
+        await msg.reply_text("Format: /removedesi user_id must be an integer")
         return
     try:
         user_id = int(msg.command[1])
         await hentai_remove_premium(user_id)
-        await msg.reply_text(f"User {user_id} has been removed from jav database.")
+        await msg.reply_text(f"User {user_id} has been removed from desi database.")
     except ValueError:
         await msg.reply_text("user_id must be an integer or not available in database.")
 
 @Bot.on_message(filters.private & filters.command('listhentai') & filters.user(ADMINS))
 async def hentai_premium_users_command(client, message):
     hentai_users = hcollection.find({})
-    hentai_user_list = ['Jav Premium User in database:']
+    hentai_user_list = ['Desi Premium User in database:']
 
     for user in hentai_users:
         user_ids = user["user_id"]
@@ -411,7 +411,7 @@ async def hentai_premium_users_command(client, message):
 
     if hentai_user_list:
         formatted_list = [f"{user}" for user in jav_user_list]
-        await message.reply_text("Premium Users For Jav in the Database:\n\n".join(formatted_list))
+        await message.reply_text("Premium Users For Desi in the Database:\n\n".join(formatted_list))
     else:
         await message.reply_text("No premium users found in the database.")
 
