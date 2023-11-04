@@ -321,7 +321,7 @@ async def wes_premium_users_command(client, message):
 
 #for jav
 
-@Bot.on_message(filters.private & filters.command('addjav') & filters.user(ADMINS))
+@Bot.on_message(filters.private & filters.command('adddesi') & filters.user(ADMINS))
 async def jav_premium_user_add(client: Client, msg: Message):
     if len(msg.command) != 3:
         await msg.reply_text("Format: /adddesi user_id time_limit_days both must be integers")
@@ -334,7 +334,7 @@ async def jav_premium_user_add(client: Client, msg: Message):
     except ValueError:
         await msg.reply_text("Invalid user_id or time_limit. Please recheck.")
 
-@Bot.on_message(filters.private & filters.command('removejav') & filters.user(ADMINS))
+@Bot.on_message(filters.private & filters.command('removedesi') & filters.user(ADMINS))
 async def jav_remove_user(client: Client, msg: Message):
     if len(msg.command) != 2:
         await msg.reply_text("Format: /removedesi user_id must be an integer")
@@ -346,7 +346,7 @@ async def jav_remove_user(client: Client, msg: Message):
     except ValueError:
         await msg.reply_text("user_id must be an integer or not available in database.")
 
-@Bot.on_message(filters.private & filters.command('listjav') & filters.user(ADMINS))
+@Bot.on_message(filters.private & filters.command('listdesi') & filters.user(ADMINS))
 async def jav_premium_users_command(client, message):
     jav_users = jcollection.find({})
     jav_user_list = ['Jav Premium User in database:']
@@ -397,7 +397,7 @@ async def hentai_remove_user(client: Client, msg: Message):
 @Bot.on_message(filters.private & filters.command('listhentai') & filters.user(ADMINS))
 async def hentai_premium_users_command(client, message):
     hentai_users = hcollection.find({})
-    hentai_user_list = ['Desi Premium User in database:']
+    hentai_user_list = ['Hentai Premium User in database:']
 
     for user in hentai_users:
         user_ids = user["user_id"]
@@ -411,7 +411,7 @@ async def hentai_premium_users_command(client, message):
 
     if hentai_user_list:
         formatted_list = [f"{user}" for user in jav_user_list]
-        await message.reply_text("Premium Users For Desi in the Database:\n\n".join(formatted_list))
+        await message.reply_text("Premium Users For Hentai in the Database:\n\n".join(formatted_list))
     else:
         await message.reply_text("No premium users found in the database.")
 
