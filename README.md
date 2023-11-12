@@ -6,7 +6,7 @@
 
 <!-- Start of banner code -->
 <!-- Start of banner code -->
-<a href="https://shrinkforearn.in/ref/Shanks333"><img src="https://telegra.ph/payments-11-12" title="Make short links and earn the biggest money" /></a>        
+<a href="https://shrinkforearn.in/ref/Shanks333"><img src="https://telegra.ph/payments-11-12" /></a>        
 <!-- End of banner code -->
 
 
