@@ -4,11 +4,10 @@
 <!-- End of banner code -->
         
 
-##
-
-**If you need any more modes in repo or If you find out any bugs, mention in [@codexbotzsupport ](https://www.telegram.dog/codexbotzsupport)**
-
-**Make sure to see [contributing.md](https://github.com/CodeXBotz/File-Sharing-Bot/blob/main/CONTRIBUTING.md) for instructions on contributing to the project!**
+<!-- Start of banner code -->
+<!-- Start of banner code -->
+<a href="https://shrinkforearn.in/ref/Shanks333"><img src="https://vnshortener.com/728x90.gif" title="Make short links and earn the biggest money" /></a>        
+<!-- End of banner code -->
 
 
 
