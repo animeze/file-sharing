@@ -225,7 +225,7 @@ Unsuccessful: <code>{unsuccessful}</code></b>"""
         await msg.delete()
 
 # for premium user
-@Bot.on_message(filters.private & filters.command('adduser') & filters.user(ADMINS))
+@Bot.on_message(filters.private & filters.command('addpremium') & filters.user(ADMINS))
 async def add_premium_user(client: Client, msg: Message):
     if len(msg.command) != 3:
         await msg.reply_text("Format: /addpremium user_id time_limit_months both must be integers")
@@ -238,7 +238,7 @@ async def add_premium_user(client: Client, msg: Message):
     except ValueError:
         await msg.reply_text("Invalid user_id or time_limit. Please recheck.")
 
-@Bot.on_message(filters.private & filters.command('removeuser') & filters.user(ADMINS))
+@Bot.on_message(filters.private & filters.command('removepremium') & filters.user(ADMINS))
 async def pre_remove_user(client: Client, msg: Message):
     if len(msg.command) != 2:
         await msg.reply_text("Format: /removeuser user_id must be an integer")
@@ -250,7 +250,7 @@ async def pre_remove_user(client: Client, msg: Message):
     except ValueError:
         await msg.reply_text("user_id must be an integer or not available in database.")
 
-@Bot.on_message(filters.private & filters.command('listuser') & filters.user(ADMINS))
+@Bot.on_message(filters.private & filters.command('listpremium') & filters.user(ADMINS))
 async def list_premium_users_command(client, message):
     premium_users = collection.find({})
     premium_user_list = ['Premium Users in database:']
