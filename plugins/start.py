@@ -410,7 +410,7 @@ async def hentai_premium_users_command(client, message):
         hentai_user_list.append(f"User id:<code>{user_ids}</code>\nUsername: @{username}\nName: <code>{first_name}</code>\nExpiration Timestamp: {x} days")
 
     if hentai_user_list:
-        formatted_list = [f"{user}" for user in jav_user_list]
+        formatted_list = [f"{user}" for user in  hentai_list_user]
         await message.reply_text("Premium Users For Hentai in the Database:\n\n".join(formatted_list))
     else:
         await message.reply_text("No premium users found in the database.")
