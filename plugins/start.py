@@ -43,7 +43,7 @@ async def start_command(client: Client, message: Message):
                     await message.reply_text("You're not a premium user. if you want buy premium services then contact @HandsumGuyOp")
                     return
 
-        if string.startswith("wesporn"):
+        if string.startswith("am"):
             if not await is_premium_user(message.from_user.id):
                 if not await wes_premium_user(message.from_user.id):
                     await message.reply_text("You're not a premium user. if you want buy premium services then contact @HandsumGuyOp")
@@ -273,10 +273,10 @@ async def list_premium_users_command(client, message):
 
 #for western porn
 
-@Bot.on_message(filters.private & filters.command('addwes') & filters.user(ADMINS))
+@Bot.on_message(filters.private & filters.command('addam') & filters.user(ADMINS))
 async def wes_premium_user_command(client: Client, msg: Message):
     if len(msg.command) != 3:
-        await msg.reply_text("Format: /addwes user_id time_limit_days both must be integers")
+        await msg.reply_text("Format: /addam user_id time_limit_days both must be integers")
         return
     try:
         user_id = int(msg.command[1])
@@ -286,10 +286,10 @@ async def wes_premium_user_command(client: Client, msg: Message):
     except ValueError:
         await msg.reply_text("Invalid user_id or time_limit. Please recheck.")
 
-@Bot.on_message(filters.private & filters.command('removewes') & filters.user(ADMINS))
+@Bot.on_message(filters.private & filters.command('removeam') & filters.user(ADMINS))
 async def wes_remove_user(client: Client, msg: Message):
     if len(msg.command) != 2:
-        await msg.reply_text("Format: /removewes user_id must be an integer")
+        await msg.reply_text("Format: /removeam user_id must be an integer")
         return
     try:
         user_id = int(msg.command[1])
@@ -298,7 +298,7 @@ async def wes_remove_user(client: Client, msg: Message):
     except ValueError:
         await msg.reply_text("user_id must be an integer or not available in database.")
 
-@Bot.on_message(filters.private & filters.command('listwes') & filters.user(ADMINS))
+@Bot.on_message(filters.private & filters.command('listam') & filters.user(ADMINS))
 async def wes_premium_users_command(client, message):
     wes_users = wcollection.find({})
     wes_user_list = ['Other p0rn Premium Users in database:']
