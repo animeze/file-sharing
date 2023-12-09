@@ -9,7 +9,7 @@ from bot import Bot
 from config import ADMINS, CHANNEL_ID, DISABLE_CHANNEL_BUTTON
 from helper_func import encode
 
-@Bot.on_message(filters.private & filters.user(ADMINS) & ~filters.command(['start','users','broadcast','batch','genlink','stats','adduser','removeuser','listuser','listjav','listwes','addjav','addwes','removejav','removewes','addhentai','removehentai','listhentai']))
+@Bot.on_message(filters.private & filters.user(ADMINS) & ~filters.command(['start','users','broadcast','batch','genlink','stats','adduser','removeuser','listuser','listdesi','listam','adddesi','addam','removedesi','removeam','addhentai','removehentai','listhentai']))
 async def channel_post(client: Client, message: Message):
     reply_text = await message.reply_text("Please Wait...!", quote = True)
     try:
@@ -42,4 +42,4 @@ async def channel_post(client: Client, message: Message):
     link3 = f"https://telegram.me/{client.username}?start={base64_string}"
     
 
-    await reply_text.edit(f"<b>> Here is your link: </b>{link}\n\n<b>> Premium Jav Link : </b>{link1}\n\n<b>> Premium Wes Link : </b>{link2}\n\n<b>> Premium Hentai Link : </b>{link3}", disable_web_page_preview = True)
+    await reply_text.edit(f"<b>> Here is your link: </b>{link}\n\n<b>> Premium Desi Link : </b>{link1}\n\n<b>> Premium AV Link : </b>{link2}\n\n<b>> Premium Hentai Link : </b>{link3}", disable_web_page_preview = True)
