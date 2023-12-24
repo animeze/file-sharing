@@ -422,7 +422,7 @@ async def not_joined(client: Client, message: Message):
         [
             InlineKeyboardButton(
                 "Join Channel",
-                url = f"https://t.me/Porn_Videos_ADULT_Movie"}
+                url = "https://t.me/Porn_Videos_ADULT_Movie"}
         ]
     ]
     try:
