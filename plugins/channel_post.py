@@ -49,8 +49,8 @@ async def channel_post(client: Client, message: Message):
     keyboard = InlineKeyboardMarkup(
         [
             [InlineKeyboardButton("Free Link", url=link)],
-            [InlineKeyboardButton("Premium Jav Link", url=link1)],
-            [InlineKeyboardButton("Premium Wes Link", url=link2)],
+            [InlineKeyboardButton("Premium Desi Link", url=link1)],
+            [InlineKeyboardButton("Premium Adult Movie Link", url=link2)],
             [InlineKeyboardButton("Premium Hentai Link", url=link3)],
             [InlineKeyboardButton("Premium Onlyfans Link", url=link4)]
         ]
