@@ -58,7 +58,7 @@ async def batch(client: Client, message: Message):
     link4 = f"https://telegram.me/{client.username}?start={base64_string}"
     
     reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton("Link", url=f"{link}")],[InlineKeyboardButton("Jav Link", url=f"{link1}")],[InlineKeyboardButton("Wes Link", url=f"{link2}")],[InlineKeyboardButton("Hentai Link", url=f"{link3}")],[InlineKeyboardButton("OnlyFans Link", url=f"{link4}")]])
-
+    await second_message.reply_text(f"<b>Here are your links.</b>", quote=True, reply_markup=reply_markup)
 
 @Bot.on_message(filters.private & filters.user(ADMINS) & filters.command('genlink'))
 async def link_generator(client: Client, message: Message):
