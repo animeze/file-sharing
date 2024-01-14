@@ -47,5 +47,6 @@ async def channel_post(client: Client, message: Message):
     link4 = f"https://telegram.me/{client.username}?start={base64_string}"
     
 
-  keyboard = InlineKeyboardMarkup( [ [InlineKeyboardButton("Free Link", url=link)], [InlineKeyboardButton("Premium Desi Link", url=link1)], [InlineKeyboardButton("Premium Adult Movie Link", url=link2)], [InlineKeyboardButton("Premium Hentai Link", url=link3)], [InlineKeyboardButton("Premium Onlyfans Link", url=link4)] ] )
+  keyboard = 
+             InlineKeyboardMarkup( [ [InlineKeyboardButton("Free Link", url=link)], [InlineKeyboardButton("Premium Desi Link", url=link1)], [InlineKeyboardButton("Premium Adult Movie Link", url=link2)], [InlineKeyboardButton("Premium Hentai Link", url=link3)], [InlineKeyboardButton("Premium Onlyfans Link", url=link4)] ] )
    await reply_text.edit( "<b>> Here are your links:</b>", disable_web_page_preview=True, reply_markup=keyboard )
