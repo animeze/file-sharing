@@ -18,6 +18,7 @@ from database.db_premium import *
 from database.db_wes import *
 from database.db_jav import *
 from database.db_hentai import *
+from database.db_only import *
 
 
 
@@ -49,6 +50,12 @@ async def start_command(client: Client, message: Message):
                     await message.reply_text("You're not a premium user. if you want buy premium services then contact @HandsumGuyOp")
                     return
 
+        if string.startswith("Onlyfans"):
+            if not await is_premium_user(message.from_user.id):
+                if not await only_premium_user(message.from_user.id):
+                    await message.reply_text("You're not a premium user. if you want buy premium services then contact @HandsumGuyOp")
+                    return
+                    
         if string.startswith("hentaix"):
             if not await is_premium_user(message.from_user.id):
                 if not await hentai_premium_user(message.from_user.id):
@@ -415,7 +422,53 @@ async def hentai_premium_users_command(client, message):
     else:
         await message.reply_text("No premium users found in the database.")
 
+#for Onlyfans
 
+@Bot.on_message(filters.private & filters.command('addonly') & filters.user(ADMINS))
+async def only_premium_user_command(client: Client, msg: Message):
+    if len(msg.command) != 3:
+        await msg.reply_text("Format: /addonly user_id time_limit_days both must be integers")
+        return
+    try:
+        user_id = int(msg.command[1])
+        time_limit_months = int(msg.command[2])
+        await only_add_premium(user_id, time_limit_months)
+        await msg.reply_text(f"User {user_id} added as a premium user for Onlyfans with a {time_limit_months}-days subscription.")
+    except ValueError:
+        await msg.reply_text("Invalid user_id or time_limit. Please recheck.")
+
+@Bot.on_message(filters.private & filters.command('removeonly') & filters.user(ADMINS))
+async def only_remove_user(client: Client, msg: Message):
+    if len(msg.command) != 2:
+        await msg.reply_text("Format: /removeonly user_id must be an integer")
+        return
+    try:
+        user_id = int(msg.command[1])
+        await wes_remove_premium(user_id)
+        await msg.reply_text(f"User {user_id} has been removed from onlyfans database.")
+    except ValueError:
+        await msg.reply_text("user_id must be an integer or not available in database.")
+
+@Bot.on_message(filters.private & filters.command('listonly') & filters.user(ADMINS))
+async def only_premium_users_command(client, message):
+    only_users = wcollection.find({})
+    only_user_list = ['OnlyFans Premium Users in database:']
+
+    for user in only_users:
+        user_ids = user["user_id"]
+        user_info = await client.get_users(user_ids)
+        username = user_info.username
+        first_name = user_info.first_name
+        expiration_timestamp = user["expiration_timestamp"]
+        xt = (expiration_timestamp-(time.time()))
+        x = round(xt/(24*60*60))
+        wes_user_list.append(f"User id:<code>{user_ids}</code>\nUsername: @{username}\nName: <code>{first_name}</code>\nExpiration Timestamp: {x} days")
+
+    if only_user_list:
+        formatted_list = [f"{user}" for user in only_user_list]
+        await message.reply_text("Premium Users For OnlyFans in the Database:\n\n".join(formatted_list))
+    else:
+        await message.reply_text("No premium users found in the database.")
 
 
 
