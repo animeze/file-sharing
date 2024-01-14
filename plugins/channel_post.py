@@ -40,6 +40,11 @@ async def channel_post(client: Client, message: Message):
     string = string.replace("get-", "hentaix-")
     base64_string = await encode(string)
     link3 = f"https://telegram.me/{client.username}?start={base64_string}"
+
+    string = f"get-{converted_id}"
+    string = string.replace("get-", "onlyfans-")
+    base64_string = await encode(string)
+    link2 = f"https://telegram.me/{client.username}?start={base64_string}"
     
 
-    await reply_text.edit(f"<b>> Here is your link: </b>{link}\n\n<b>> Premium Desi Link : </b>{link1}\n\n<b>> Premium AV Link : </b>{link2}\n\n<b>> Premium Hentai Link : </b>{link3}", disable_web_page_preview = True)
+    await reply_text.edit(f"<b>> Here is your link: </b>{link}\n\n<b>> Premium Desi Link : </b>{link1}\n\n<b>> Premium AV Link : </b>{link2}\n\n<b>> Premium Hentai Link : </b>{link3}\n\n<b>> Premium Onlyfans Link : </b>{link4}", disable_web_page_preview = True)
