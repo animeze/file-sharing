@@ -44,7 +44,7 @@ async def channel_post(client: Client, message: Message):
     string = f"get-{converted_id}"
     string = string.replace("get-", "onlyfans-")
     base64_string = await encode(string)
-    link2 = f"https://telegram.me/{client.username}?start={base64_string}"
+    link4 = f"https://telegram.me/{client.username}?start={base64_string}"
     
 
-    await reply_text.edit(f"<b>> Here is your link: </b>{link}\n\n<b>> Premium Desi Link : </b>{link1}\n\n<b>> Premium AV Link : </b>{link2}\n\n<b>> Premium Hentai Link : </b>{link3}\n\n<b>> Premium Onlyfans Link : </b>{link4}", disable_web_page_preview = True)
+   reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton("Link", url=f"{link}")], [InlineKeyboardButton("Jav Link", url=f"{link1}")], [InlineKeyboardButton("Wes Link", url=f"{link2}")], [InlineKeyboardButton("Hentai Link", url=f"{link3}")], [InlineKeyboardButton("OnlyFans Link", url=f"{link4}")]])
