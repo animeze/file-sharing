@@ -444,14 +444,14 @@ async def only_remove_user(client: Client, msg: Message):
         return
     try:
         user_id = int(msg.command[1])
-        await wes_remove_premium(user_id)
+        await only_remove_premium(user_id)
         await msg.reply_text(f"User {user_id} has been removed from onlyfans database.")
     except ValueError:
         await msg.reply_text("user_id must be an integer or not available in database.")
 
 @Bot.on_message(filters.private & filters.command('listonly') & filters.user(ADMINS))
 async def only_premium_users_command(client, message):
-    only_users = wcollection.find({})
+    only_users = ocollection.find({})
     only_user_list = ['OnlyFans Premium Users in database:']
 
     for user in only_users:
@@ -462,7 +462,7 @@ async def only_premium_users_command(client, message):
         expiration_timestamp = user["expiration_timestamp"]
         xt = (expiration_timestamp-(time.time()))
         x = round(xt/(24*60*60))
-        wes_user_list.append(f"User id:<code>{user_ids}</code>\nUsername: @{username}\nName: <code>{first_name}</code>\nExpiration Timestamp: {x} days")
+        only_user_list.append(f"User id:<code>{user_ids}</code>\nUsername: @{username}\nName: <code>{first_name}</code>\nExpiration Timestamp: {x} days")
 
     if only_user_list:
         formatted_list = [f"{user}" for user in only_user_list]
