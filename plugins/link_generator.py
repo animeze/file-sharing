@@ -57,13 +57,7 @@ async def batch(client: Client, message: Message):
     base64_string = await encode(string)
     link4 = f"https://telegram.me/{client.username}?start={base64_string}"
     
-    reply_markup = InlineKeyboardMarkup([
-    [InlineKeyboardButton("Link", url=f"{link}")],
-    [InlineKeyboardButton("Jav Link", url=f"{link1}")],
-    [InlineKeyboardButton("Wes Link", url=f"{link2}")],
-    [InlineKeyboardButton("Hentai Link", url=f"{link3}")],
-    [InlineKeyboardButton("OnlyFans Link", url=f"{link4}")]
-])
+    reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton("Link", url=f"{link}")],[InlineKeyboardButton("Jav Link", url=f"{link1}")],[InlineKeyboardButton("Wes Link", url=f"{link2}")],[InlineKeyboardButton("Hentai Link", url=f"{link3}")],[InlineKeyboardButton("OnlyFans Link", url=f"{link4}")]])
 
 
 @Bot.on_message(filters.private & filters.user(ADMINS) & filters.command('genlink'))
