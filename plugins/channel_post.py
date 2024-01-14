@@ -47,4 +47,10 @@ async def channel_post(client: Client, message: Message):
     link4 = f"https://telegram.me/{client.username}?start={base64_string}"
     
 
-   reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton("Link", url=f"{link}")], [InlineKeyboardButton("Jav Link", url=f"{link1}")], [InlineKeyboardButton("Wes Link", url=f"{link2}")], [InlineKeyboardButton("Hentai Link", url=f"{link3}")], [InlineKeyboardButton("OnlyFans Link", url=f"{link4}")]])
+   reply_markup = InlineKeyboardMarkup([
+    [InlineKeyboardButton("Link", url=f"{link}")],
+    [InlineKeyboardButton("Jav Link", url=f"{link1}")],
+    [InlineKeyboardButton("Wes Link", url=f"{link2}")],
+    [InlineKeyboardButton("Hentai Link", url=f"{link3}")],
+    [InlineKeyboardButton("OnlyFans Link", url=f"{link4}")]
+])
