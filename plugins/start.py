@@ -50,7 +50,7 @@ async def start_command(client: Client, message: Message):
                     await message.reply_text("You're not a premium user. if you want buy premium services then contact @HandsumGuyOp")
                     return
 
-        if string.startswith("Onlyfans"):
+        if string.startswith("onlyfans"):
             if not await is_premium_user(message.from_user.id):
                 if not await only_premium_user(message.from_user.id):
                     await message.reply_text("You're not a premium user. if you want buy premium services then contact @HandsumGuyOp")
