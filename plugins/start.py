@@ -62,13 +62,12 @@ async def start_command(client: Client, message: Message):
                     await message.reply_text("You're not a premium user. if you want buy premium services then contact @HandsumGuyOp")
                     return
 
-         if string.startswith("as"):
+         if string.startswith("desi"):
             if not await is_premium_user(message.from_user.id):
                 if not await jav_premium_user(message.from_user.id):
                     await message.reply_text("You're not a premium user. if you want buy premium services then contact @HandsumGuyOp")
                     return
-                    
-        argument = string.split("-")
+                argument = string.split("-")
         if len(argument) == 3:
             try:
                 start = int(int(argument[1]) / abs(client.db_channel.id))
@@ -477,39 +476,39 @@ async def only_premium_users_command(client, message):
     else:
         await message.reply_text("No premium users found in the database.")
 
-#for As
+#for Desi
 
 @Bot.on_message(filters.private & filters.command('addjav') & filters.user(ADMINS))
-async def jav_premium_user_command(client: Client, msg: Message):
+async def desi_premium_user_command(client: Client, msg: Message):
     if len(msg.command) != 3:
         await msg.reply_text("Format: /addjav user_id time_limit_days both must be integers")
         return
     try:
         user_id = int(msg.command[1])
         time_limit_months = int(msg.command[2])
-        await jav_add_premium(user_id, time_limit_months)
+        await desi_add_premium(user_id, time_limit_months)
         await msg.reply_text(f"User {user_id} added as a premium user for Jav with a {time_limit_months}-days subscription.")
     except ValueError:
         await msg.reply_text("Invalid user_id or time_limit. Please recheck.")
 
 @Bot.on_message(filters.private & filters.command('removejav') & filters.user(ADMINS))
-async def jav_remove_user(client: Client, msg: Message):
+async def desi_remove_user(client: Client, msg: Message):
     if len(msg.command) != 2:
         await msg.reply_text("Format: /removejav user_id must be an integer")
         return
     try:
         user_id = int(msg.command[1])
-        await jav_remove_premium(user_id)
+        await desi_remove_premium(user_id)
         await msg.reply_text(f"User {user_id} has been removed from jav database.")
     except ValueError:
         await msg.reply_text("user_id must be an integer or not available in database.")
 
 @Bot.on_message(filters.private & filters.command('listjav') & filters.user(ADMINS))
-async def jav_premium_users_command(client, message):
-    jav_users = ocollection.find({})
-    jav_user_list = ['Jav Premium Users in database:']
+async def desi_premium_users_command(client, message):
+    desi_users = dcollection.find({})
+    desi_user_list = ['Jav Premium Users in database:']
 
-    for user in only_users:
+    for user in desi_users:
         user_ids = user["user_id"]
         user_info = await client.get_users(user_ids)
         username = user_info.username
@@ -517,10 +516,10 @@ async def jav_premium_users_command(client, message):
         expiration_timestamp = user["expiration_timestamp"]
         xt = (expiration_timestamp-(time.time()))
         x = round(xt/(24*60*60))
-        jav_user_list.append(f"User id:<code>{user_ids}</code>\nUsername: @{username}\nName: <code>{first_name}</code>\nExpiration Timestamp: {x} days")
+        desi_user_list.append(f"User id:<code>{user_ids}</code>\nUsername: @{username}\nName: <code>{first_name}</code>\nExpiration Timestamp: {x} days")
 
-    if jav_user_list:
-        formatted_list = [f"{user}" for user in jav_user_list]
+    if desi_user_list:
+        formatted_list = [f"{user}" for user in desi_user_list]
         await message.reply_text("Premium Users For Jav in the Database:\n\n".join(formatted_list))
     else:
         await message.reply_text("No premium users found in the database.")
