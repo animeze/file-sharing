@@ -16,6 +16,8 @@ from database.db_jav import jav_remove_expired_users
 from database.db_wes import wes_remove_expired_users
 from database.db_hentai import hentai_remove_expired_users
 from database.db_only import only_remove_expired_users
+from database.db_desi import desi_remove_expired_users
+
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 scheduler = AsyncIOScheduler()
 scheduler.add_job(remove_expired_users, "interval", seconds=3600)
@@ -23,6 +25,7 @@ scheduler.add_job(jav_remove_expired_users, "interval", seconds=3600)
 scheduler.add_job(hentai_remove_expired_users, "interval", seconds=3600)
 scheduler.add_job(wes_remove_expired_users, "interval", seconds=3600)
 scheduler.add_job(only_remove_expired_users, "interval", seconds=3600)
+scheduler.add_job(desi_remove_expired_users, "interval", seconds=3600)
 scheduler.start()
 
 load_dotenv(".env")
@@ -57,7 +60,7 @@ class Bot(Client):
                 self.LOGGER(__name__).warning(a)
                 self.LOGGER(__name__).warning("Bot can't Export Invite link from Force Sub Channel!")
                 self.LOGGER(__name__).warning(f"Please Double check the FORCE_SUB_CHANNEL value and Make sure Bot is Admin in channel with Invite Users via Link Permission, Current Force Sub Channel Value: {FORCE_SUB_CHANNEL}")
-                self.LOGGER(__name__).info("\nBot Stopped. Join https://t.me/CodeXBotz for support")
+                self.LOGGER(__name__).info("\nBot Stopped. Join https://t.me/Wizard_Bots for support")
                 sys.exit()
         try:
             db_channel = await self.get_chat(CHANNEL_ID)
@@ -67,11 +70,11 @@ class Bot(Client):
         except Exception as e:
             self.LOGGER(__name__).warning(e)
             self.LOGGER(__name__).warning(f"Make Sure bot is Admin in DB Channel, and Double check the CHANNEL_ID Value, Current Value {CHANNEL_ID}")
-            self.LOGGER(__name__).info("\nBot Stopped. Join https://t.me/CodeXBotz for support")
+            self.LOGGER(__name__).info("\nBot Stopped. Join https://t.me/Wizard_Bots for support")
             sys.exit()
 
         self.set_parse_mode(ParseMode.HTML)
-        self.LOGGER(__name__).info(f"Bot Running..!\n\nCreated by \nhttps://t.me/CodeXBotz")
+        self.LOGGER(__name__).info(f"Bot Running..!\n\nCreated by \nhttps://t.me/Wizard_Bots")
         self.LOGGER(__name__).info(f""" \n\n       
 ░█████╗░░█████╗░██████╗░███████╗██╗░░██╗██████╗░░█████╗░████████╗███████╗
 ██╔══██╗██╔══██╗██╔══██╗██╔════╝╚██╗██╔╝██╔══██╗██╔══██╗╚══██╔══╝╚════██║
