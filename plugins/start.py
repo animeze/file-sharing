@@ -67,7 +67,7 @@ async def start_command(client: Client, message: Message):
                 if not await jav_premium_user(message.from_user.id):
                     await message.reply_text("You're not a premium user. if you want buy premium services then contact @HandsumGuyOp")
                     return
-         argument = string.split("-")
+        argument = string.split("-")
         if len(argument) == 3:
             try:
                 start = int(int(argument[1]) / abs(client.db_channel.id))
