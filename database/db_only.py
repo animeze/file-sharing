@@ -16,7 +16,7 @@ async def only_add_premium(user_id, time_limit_days):
     }
     ocollection.insert_one(premium_data)
 
-async def ony_remove_premium(user_id):
+async def only_remove_premium(user_id):
     result = ocollection.delete_one({"user_id": user_id})
 
 async def only_remove_expired_users():
