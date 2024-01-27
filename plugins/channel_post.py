@@ -9,7 +9,7 @@ from bot import Bot
 from config import ADMINS, CHANNEL_ID, DISABLE_CHANNEL_BUTTON
 from helper_func import encode
 
-@Bot.on_message(filters.private & filters.user(ADMINS) & ~filters.command(['start','users','broadcast','batch','genlink','stats','adduser','removeuser','listuser','listdesi','listam','adddesi','addam','removedesi','removeam','addhentai','removehentai','listhentai' ,'addonly','removeonly','listonly']))
+@Bot.on_message(filters.private & filters.user(ADMINS) & ~filters.command(['start','users','broadcast','batch','genlink','stats','adduser','removeuser','listuser','listdesi','listam','adddesi','addam','removedesi','removeam','addhentai','removehentai','listhentai' ,'addonly','removeonly','listonly' ,'addjav','removejav','listjav']))
 async def channel_post(client: Client, message: Message):
     reply_text = await message.reply_text("Please Wait...!", quote = True)
     try:
@@ -45,7 +45,12 @@ async def channel_post(client: Client, message: Message):
     string = string.replace("get-", "onlyfans-")
     base64_string = await encode(string)
     link4 = f"https://telegram.me/{client.username}?start={base64_string}"
-    
+
+    string = f"get-{converted_id}"
+    string = string.replace("get-", "jav-")
+    base64_string = await encode(string)
+    link5 = f"https://telegram.me/{client.username}?start={base64_string}"
+
     keyboard = InlineKeyboardMarkup(
         [
             [InlineKeyboardButton("Free Link", url=link)],
@@ -53,6 +58,7 @@ async def channel_post(client: Client, message: Message):
             [InlineKeyboardButton("Premium Adult Movie Link", url=link2)],
             [InlineKeyboardButton("Premium Hentai Link", url=link3)],
             [InlineKeyboardButton("Premium Onlyfans Link", url=link4)]
+            [InlineKeyboardButton("Premium Jav Link", url=link5)]
         ]
     )
 
