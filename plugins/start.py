@@ -62,7 +62,7 @@ async def start_command(client: Client, message: Message):
                     await message.reply_text("You're not a premium user. if you want buy premium services then contact @HandsumGuyOp")
                     return
 
-         if string.startswith("jav"):
+         if string.startswith("as"):
             if not await is_premium_user(message.from_user.id):
                 if not await jav_premium_user(message.from_user.id):
                     await message.reply_text("You're not a premium user. if you want buy premium services then contact @HandsumGuyOp")
@@ -477,7 +477,7 @@ async def only_premium_users_command(client, message):
     else:
         await message.reply_text("No premium users found in the database.")
 
-#for Jav
+#for As
 
 @Bot.on_message(filters.private & filters.command('addjav') & filters.user(ADMINS))
 async def jav_premium_user_command(client: Client, msg: Message):
