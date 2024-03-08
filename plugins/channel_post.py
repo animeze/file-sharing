@@ -32,7 +32,7 @@ async def channel_post(client: Client, message: Message):
     link1 = f"https://telegram.me/{client.username}?start={base64_string}"
 
     string = f"get-{converted_id}"
-    string = string.replace("get-", "wesporn-")
+    string = string.replace("get-", "amporn-")
     base64_string = await encode(string)
     link2 = f"https://telegram.me/{client.username}?start={base64_string}"
 
@@ -47,18 +47,18 @@ async def channel_post(client: Client, message: Message):
     link4 = f"https://telegram.me/{client.username}?start={base64_string}"
 
     string = f"get-{converted_id}"
-    string = string.replace("get-", "jav-")
+    string = string.replace("get-", "desi-")
     base64_string = await encode(string)
     link5 = f"https://telegram.me/{client.username}?start={base64_string}"
 
     keyboard = InlineKeyboardMarkup(
         [
             [InlineKeyboardButton("Free Link", url=link)],
-            [InlineKeyboardButton("Premium Desi Link", url=link1)],
+            [InlineKeyboardButton("Premium Desi Link", url=link5)],
             [InlineKeyboardButton("Premium ADult Movie Link", url=link2)],
             [InlineKeyboardButton("Premium Hentai Link", url=link3)],
             [InlineKeyboardButton("Premium OnlyFans Link", url=link4)],
-            [InlineKeyboardButton("Premium Jav Link", url=link5)]
+            [InlineKeyboardButton("Premium Jav Link", url=link1)]
         ]
     )
 
